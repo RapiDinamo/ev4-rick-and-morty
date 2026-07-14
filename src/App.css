@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 1. COMPORTAMIENTO TIPO APP (Sin scroll general) */
+body {
+  background-color: #f8fafc;
+  color: #334155;
+  height: 100vh;
+  overflow: hidden; 
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* 2. BARRA SUPERIOR */
+header {
+  background: #ffffff;
+  padding: 15px 30px;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+}
+
+/* 3. LAYOUT DIVIDIDO */
+.layout {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 4. PANEL LATERAL (FAVORITOS MOVIDOS A LA IZQUIERDA) */
+aside {
+  order: -1; /* Este comando mágico lo mueve a la izquierda */
+  width: 360px;
+  background: #ffffff;
+  padding: 25px;
+  overflow-y: auto; /* Scroll propio */
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+aside h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+aside h2::before {
+  content: '⭐';
+}
+
+/* 5. ZONA PRINCIPAL (GRILLA) */
+section {
+  flex: 1;
+  padding: 0 40px 40px 40px;
+  overflow-y: auto; /* Scroll propio */
+  background: #f8fafc;
+}
+
+/* BUSCADOR FIJO */
+.buscador {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #f8fafc;
+  padding: 25px 0;
+}
+
+.buscador input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 1rem;
+  color: #334155;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.buscador input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+}
+
+/* TARJETAS DE PERSONAJES */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 16px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.card-info p {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.card button {
+  margin-top: 12px;
+  background: #f1f5f9;
+  color: #4f46e5;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.card button:hover {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+/* LISTA DE FAVORITOS (Diseño compacto) */
+.lista-favoritos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fav-item {
+  display: flex;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.fav-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.fav-item > div {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.fav-item h4 {
+  font-size: 0.9rem;
+  color: #0f172a;
+  margin-right: 25px; /* Deja espacio para la X */
+}
+
+.fav-item input {
+  width: 100%;
+  padding: 6px 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  outline: none;
+}
+
+.fav-item input:focus {
+  border-color: #4f46e5;
+}
+
+.fav-item button {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.fav-item button:hover {
+  color: #ef4444;
+}
+
+/* MENSAJES */
+.error {
+  color: #ef4444;
+  background: #fee2e2;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  color: #64748b;
+  margin-top: 20px;
+}
+
+/* ADAPTACIÓN A PANTALLAS PEQUEÑAS (Profesor revisando en laptop) */
+@media (max-width: 900px) {
+  body { height: auto; overflow: auto; }
+  .contenedor { height: auto; }
+  .layout { flex-direction: column; overflow: visible; }
+  aside { order: 2; width: 100%; border-right: none; border-top: 1px solid #e2e8f0; }
+  section { order: 1; padding: 0 20px 20px 20px;}
+}
